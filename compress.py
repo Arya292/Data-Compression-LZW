@@ -1,3 +1,5 @@
+import os
+
 def compress(txt):
     with open(txt) as f:
         contents = f.read()
@@ -14,7 +16,7 @@ def compress(txt):
             a=b
         i=i+1
     output=output+ str(table.index(a))+" "
-    new=open(os.path.splittext(txt)[0]+".lzw","w+")
+    new=open(os.path.splitext(txt)[0]+".lzw","w+")
     new.write(output)
     new.close()
 if __name__ == "__main__":
