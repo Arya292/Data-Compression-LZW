@@ -6,28 +6,30 @@ class decompress():
         if not out:
             out = os.path.splittext(file)[0]+".txt"
         self.dict=[chr(a) for a in range(256)]
-        self.file=file
-        de=self.decompress(file)
+        self.text=open(file,"r").read()
+        de=self.decompress()
         with open(out,"w") as f:
             f.write(de)
 
 
-    def decompress(text):
+    def decompress(self):
         c = ""
-        text = list(map(int, text.strip().split(",")))
-        prev = text[0]
+        self.text = list(map(int, self.text.strip().split(",")))
+        prev = self.text[0]
+        self.len = len(self.text)
         out = self.dict[prev]
         i = 1
-        while i < len(text):
-            if text[i] >= len(dct):
+        while i < self.len:
+            print(i/self.len,end="\r")
+            if self.text[i] >= len(self.dict):
                 s = self.dict[prev]
                 s = s+c
             else:
-                s = self.dict[text[i]]
+                s = self.dict[self.text[i]]
             out += s
             c = s[0]
-            dict.append(self.dict[prev]+c)
-            prev = text[i]
+            self.dict.append(self.dict[prev]+c)
+            prev = self.text[i]
             i += 1
         return out
 

@@ -3,14 +3,19 @@ from compress import compress
 import time
 import os
 
-t=time.time()
-compress("./data/file2.txt")
-print(f"Compress time: {time.time()-t}")
-print("Size before compression:",os.path.getsize("./data/file2.txt"))
-print("Size after compression:",os.path.getsize("./data/file2.lzw"))
-
-t=time.time()
-decompress("./data/file2.lzw", "./data/file2_d.txt")
-print(f"Decompress time: {time.time()-t}")
-print("Size before decompression:",os.path.getsize("./data/file2.lzw"))
-print("Size after decompression:",os.path.getsize("./data/file2_d.txt"))
+for i in range(1,4):
+    t=time.time()
+    compress(f"./data/file{i}.txt")
+    comp_time = (time.time()-t)
+    size1,size2=os.path.getsize(f"./data/file{i}.txt"),os.path.getsize(f"./data/file{i}.lzw")
+    t=time.time()
+    decompress(f"./data/file{i}.lzw", f"./data/file{i}_d.txt")
+    decomp_time = (time.time()-t)
+    size3=os.path.getsize(f"./data/file{i}_d.txt")
+    print("Size before compression:", size1/1024, "KB")
+    print("Size after compression:", size2/1024, "KB")
+    print("Size after decompression:",size3/1024,"KB")
+    print("Compression ratio:",size2/size1)
+    print(f"Compress time: {comp_time}s")
+    print(f"Decompress time: {decomp_time}s")
+    print("="*50)
