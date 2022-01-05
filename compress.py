@@ -14,8 +14,9 @@ def compress(txt):
             a=b
         i=i+1
     output=output+ str(table.index(a))+" "
-    new=open("Compressed.txt","w+")
+    new=open(os.path.splittext(txt)[0]+".lzw","w+")
     new.write(output)
-
-file=input()
-compress(file)
+    new.close()
+if __name__ == "__main__":
+    file=input()
+    compress(file)
