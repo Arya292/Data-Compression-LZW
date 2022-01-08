@@ -4,7 +4,7 @@ import sys
 class decompress():
     def __init__(self,file,out=None):
         if not out:
-            out = os.path.splittext(file)[0]+".txt"
+            out = os.path.splitext(file)[0]+".txt"
         self.dict=[chr(a) for a in range(256)]
         self.text=open(file,"r").read()
         de=self.decompress()
