@@ -16,23 +16,27 @@ for frs in(f1,f2):
 root.title("COMPRESS ME")
 
 # in first frame 
-l0=tk.Label(f1,text="WELCOME",font=24)
-l0.pack(pady=20)
+l0=tk.Label(f1,text="WELCOME",font=600,fg="green")
+l0.pack(pady=60)
 img = ImageTk.PhotoImage(Image.open("im1.png"))  
 l1=tk.Label(f1,image=img)
 l1.pack(pady=80)
-mb1=tk.Menubutton(f1,text="Select the file type",fg="blue",)
-mb1.menu=tk.Menu(mb1)
-mb1["menu"]=mb1.menu
-mb1.menu.add_command(label="           Text       ")
-mb1.menu.add_command(label="           Image      ")
-mb1.pack(side=tk.TOP, pady=0)
+
 go=tk.Button(f1,text="go",command=lambda:show(f2))
-go.pack(pady=20)
+go.pack(pady=70)
 
 #in the second frame 
+temp=tk.Label(f2,text="")
+temp.pack(side=tk.TOP,pady=50)
+Compress=tk.Button(f2,text="COMPRESS",bg="violet")
+Compress.pack(side=tk.TOP,padx=30,pady=10)
+Decompress= tk.Button(f2,text="DECOMPRESS",bg="violet")
+Decompress.pack(side=tk.TOP,padx=40)
+
+
 back=tk.Button(f2,text="back",command=lambda:show(f1))
-back.pack(pady=20)
+back.pack(side =tk.BOTTOM,pady=40)
+
  
 show(f1)
 root.mainloop()
