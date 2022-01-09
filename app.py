@@ -1,7 +1,5 @@
 import os
 from tkinter import *
-import compress
-import decompress
 from tkinter import filedialog
 from tkinter import scrolledtext
 from PIL import Image, ImageTk
@@ -13,7 +11,7 @@ class Example(Frame):
     def __init__(self, master, *pargs):
         Frame.__init__(self, master, *pargs)
 
-        self.image = Image.open("./static/bg.png")
+        self.image = Image.open("./assets/bg.png")
         self.img_copy = self.image.copy()
 
         self.background_image = ImageTk.PhotoImage(self.image)
@@ -78,7 +76,7 @@ def browse():
 
 root=Tk()
 root.geometry("800x450")
-root.iconphoto(True, PhotoImage(file="static/icon.png"))
+root.iconphoto(True, PhotoImage(file="assets/icon.png"))
 root.rowconfigure(0,weight=1)
 root.columnconfigure(0,weight=1)
 f1=Example(root)
