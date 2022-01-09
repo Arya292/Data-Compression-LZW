@@ -75,10 +75,12 @@ def browse():
 
 
 root=Tk()
-root.geometry("800x450")
+root.geometry("800x650")
+
 root.iconphoto(True, PhotoImage(file="assets/icon.png"))
 root.rowconfigure(0,weight=1)
 root.columnconfigure(0,weight=1)
+
 f1=Example(root)
 f2=Frame(root,bg=color1)
 
@@ -94,31 +96,31 @@ root.title("COMPRESS ME")
 # canv.pack(fill="both",expand=True)
 # canv.create_image(0, 0, image=bg, anchor="nw")
 
-l0=Label(f1,text="WELCOME",font=1000,fg="green")
-l0.place(relx=0.5,rely=0.1,anchor="center",relheight=0.1,relwidth=0.3)
+l0=Label(f1,text="WELCOME",font= ("Lucida Bright",50),fg="purple",bg="pink")
+l0.place(relx=0.5,rely=0.3,anchor="center",relheight=0.11,relwidth=0.45)
 
-go = Button(f1, text="go", command=lambda: show(f2), border=0,bg=color2, fg=color3, activebackground=color3, activeforeground=color2)
-go.place(relx=0.5, rely=0.99, anchor="s")
+go = Button(f1, text="go --->",font= ("Lucida Bright",15), command=lambda: show(f2), border=0,bg="pink", fg=color3, activebackground=color3, activeforeground=color2)
+go.place(relx=0.5, rely=0.97, anchor="s")
 
 #in the second frame
-back = Button(f2, text="back", command=lambda: show(f1),border=0, bg=color2, fg=color3,activebackground=color3,activeforeground=color2)
+back = Button(f2, text="<--- back", font= ("Lucida Bright",13),command=lambda: show(f1),border=0, bg="pink", fg=color3,activebackground=color3,activeforeground=color2)
 back.place(relx=0.5, rely=0.99, anchor="s")
 
-temp=Label(f2,text="File Compressor",font=1000,fg="green",bg=color1)
+temp=Label(f2,text="File Compressor",font= ("Lucida Bright",15),fg="purple",bg=color1)
 temp.place(relx=0.5, rely=0.03, relheight=0.1, relwidth=0.5, anchor="n")
 
-Compress=Button(f2,text="COMPRESS",bg=color2,command=lambda:compress(filename),border=0,fg=color3,activebackground=color3,activeforeground=color2)
-Decompress= Button(f2,text="DECOMPRESS",bg=color2,fg=color3,command=lambda:decompress(filename),border=0,activebackground=color3,activeforeground=color2)
-Compress.place(relx=0.5, rely=0.84,relheight=0.08, relwidth=0.25)
-Decompress.place(relx=0.75, rely=0.84, relheight=0.08, relwidth=0.25)
+Compress=Button(f2,font= ("Lucida Bright",15),text="COMPRESS",bg=color2,command=lambda:compress(filename),border=0,fg=color3,activebackground=color3,activeforeground=color2)
+Decompress= Button(f2,text="DECOMPRESS",font= ("Lucida Bright",15),bg=color2,fg=color3,command=lambda:decompress(filename),border=0,activebackground=color3,activeforeground=color2)
+Compress.place(relx=0.2, rely=0.82,relheight=0.08, relwidth=0.18)
+Decompress.place(relx=0.6, rely=0.82, relheight=0.08, relwidth=0.18)
 
 l2=Label(f2)
 l2.place(relx=0.25, rely=0.25, relheight=0.5, relwidth=0.5)
 
-file_disp = Label(f2, text="No File selected", width=100, height=1, fg=color3, bg=color2)
+file_disp = Label(f2, text="      ", width=100, height=1, fg=color3, bg=color2)
 file_button = Button(f2, text="Browse Files", command=browse ,border=0,fg=color3,bg=color2,activebackground=color3,activeforeground=color2)
-file_disp.place(relx=0, rely=0.13, height=25, relwidth=0.75)
-file_button.place(relx=0.75, rely=0.13, height=25,relwidth=0.25)
+file_disp.place(relx=0, rely=0.13, height=29, relwidth=0.75)
+file_button.place(relx=0.75, rely=0.13, height=29,relwidth=0.25)
 
 show(f1)
 root.mainloop()
