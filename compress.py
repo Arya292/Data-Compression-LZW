@@ -2,6 +2,7 @@ import os
 from PIL import Image 
 
 def compress(file):
+    global extension , name
     name,extension=os.path.splitext(file)
     if extension==".txt":
         text_compress(file)
@@ -29,8 +30,6 @@ def image_compress(image):
     compress_any(s)
 def compress_any(contents):
     table= [chr(i) for i in range(256)]
-    table.append(chr(425))
-    table.append(chr(945))
     output,a="",contents[0]
     i=1
     while i<=(len(contents)-1):
@@ -43,6 +42,6 @@ def compress_any(contents):
             a=b
         i=i+1
     output=output+ str(table.index(a))+" "
-    new=open("compressed.txt","w+")
+    new=open(name+".lzw","w+")
     new.write(output)
-    
+    new.write(extension)
