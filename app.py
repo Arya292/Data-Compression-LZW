@@ -108,7 +108,9 @@ root.title("COMPRESS ME")
 l0=Label(f1,text="WELCOME",font= ("Lucida Bright",50),fg="purple",bg="pink")
 l0.place(relx=0.5,rely=0.3,anchor="center",relheight=0.11,relwidth=0.45)
 
-go = Button(f1, text="go --->",font= ("Lucida Bright",15), command=lambda: show(f2), border=0,bg="pink", fg=color3, activebackground=color3, activeforeground=color2)
+img=Image.open("./assets/go_button.png")
+img=ImageTk.PhotoImage(img)
+go = Button(f1, image=img, command=lambda: show(f2),border=0)
 go.place(relx=0.5, rely=0.97, anchor="s")
 
 #in the second frame
