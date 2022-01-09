@@ -1,5 +1,7 @@
 import os
 from tkinter import *
+import compress
+import decompress
 from tkinter import filedialog
 from tkinter import scrolledtext
 from PIL import Image, ImageTk
