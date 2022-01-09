@@ -5,16 +5,16 @@ def compress(file):
     global extension , name
     name,extension=os.path.splitext(file)
     if extension==".txt":
-        text_compress(file)
+        return text_compress(file)
     elif extension in ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif']:
-        image_compress(file)
+        return image_compress(file)
     else :
-        print("unknown file format")
+        return "unknown file format"
     
 def text_compress(text):
     with open(text) as f:
         contents = f.read()
-    compress_any(contents)
+    return compress_any(contents)
     
 
 def image_compress(image):
@@ -26,8 +26,8 @@ def image_compress(image):
             temp=im.getpixel((i,j))
             a,b,c=temp[0],temp[1],temp[2]
             s=s+str(a)+","+str(b)+","+str(c)+" "
-    s=s+"\n"
-    compress_any(s)
+        s=s+"\n"
+    return compress_any(s)
 def compress_any(contents):
     table= [chr(i) for i in range(256)]
     output,a="",contents[0]
@@ -45,3 +45,4 @@ def compress_any(contents):
     new=open(name+".lzw","w+")
     new.write(output)
     new.write(extension)
+    return "File compressed successfully"

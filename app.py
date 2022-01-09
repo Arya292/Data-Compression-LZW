@@ -21,7 +21,6 @@ class Example(Frame):
         self.background.bind('<Configure>', self._resize_image)
 
     def _resize_image(self, event):
-
         new_width = event.width
         new_height = event.height
 
@@ -44,7 +43,7 @@ def show(fr):
     fr.tkraise()
 
 def browse():
-    global filename, color1, color2
+    global filename, color1, color2,l2
     filetypes = (("all files", "*.*"),
                  ("Text files", "*.txt*"),
                  ("Image", "*.png*"),
@@ -55,6 +54,10 @@ def browse():
                                           filetypes=filetypes)
     file_disp.configure(text="File Opened: "+filename)
     if isimg(filename):
+        try:l2.destroy()
+        except:pass
+        l2 = Label(f2)
+        l2.place(relx=0.25, rely=0.25, relheight=0.5, relwidth=0.5)
         img = Image.open(filename)
         x, y = img.size
         print(filename,x,y)
@@ -63,15 +66,28 @@ def browse():
         l2.image = preview
     else:
         try:
-            text=open(filename,"r").read()
-            l2.configure(text=text,bg=color1,anchor=W)
-            l2.image=None
-            new=scrolledtext(l2,width=50,height=10,bg=color1)
-        except:
+            text = open(filename, "r").read()
+            try:l2.destroy() 
+            except: pass
+            l2=scrolledtext.ScrolledText(f2,width=50,height=10,bg=color2)
+            l2.insert(END,text)
+            l2.place(relx=0.25, rely=0.25, relheight=0.5, relwidth=0.5)
+        except Exception as e:
+            l2 = Label(f2)
             l2.configure(text="Unknown File format")
             l2.text="Unknown File format"
+            print(e)
 
-    
+def comp(comp):
+    global filename
+    if comp:
+        y=compress(filename)
+    else:
+        y=decompress(filename)
+        y=y.msg
+    if y:
+        l2.configure(text=y)
+        l2.text=y
 
 
 root=Tk()
@@ -109,8 +125,8 @@ back.place(relx=0.5, rely=0.99, anchor="s")
 temp=Label(f2,text="File Compressor",font= ("Lucida Bright",15),fg="purple",bg=color1)
 temp.place(relx=0.5, rely=0.03, relheight=0.1, relwidth=0.5, anchor="n")
 
-Compress=Button(f2,font= ("Lucida Bright",15),text="COMPRESS",bg=color2,command=lambda:compress(filename),border=0,fg=color3,activebackground=color3,activeforeground=color2)
-Decompress= Button(f2,text="DECOMPRESS",font= ("Lucida Bright",15),bg=color2,fg=color3,command=lambda:decompress(filename),border=0,activebackground=color3,activeforeground=color2)
+Compress=Button(f2,font= ("Lucida Bright",15),text="COMPRESS",bg=color2,command=lambda:comp(True),border=0,fg=color3,activebackground=color3,activeforeground=color2)
+Decompress= Button(f2,text="DECOMPRESS",font= ("Lucida Bright",15),bg=color2,fg=color3,command=lambda:comp(False),border=0,activebackground=color3,activeforeground=color2)
 Compress.place(relx=0.2, rely=0.82,relheight=0.08, relwidth=0.18)
 Decompress.place(relx=0.6, rely=0.82, relheight=0.08, relwidth=0.18)
 
