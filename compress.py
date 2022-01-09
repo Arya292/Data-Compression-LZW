@@ -1,13 +1,39 @@
 import os
+from PIL import Image 
 
-def compress(txt):
-    with open(txt) as f:
+def compress(file):
+    name,extension=os.path.splitext(file)
+    if extension==".txt":
+        text_compress(file)
+    elif extension in ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif']:
+        image_compress(file)
+    else :
+        print("unknown file format")
+    
+def text_compress(text):
+    with open(text) as f:
         contents = f.read()
+    compress_any(contents)
+    
+
+def image_compress(image):
+    im=Image.open(image)
+    x,y=im.size[0],im.size[1]
+    s=""
+    for i in range(0,x):
+        for j in range(0,y):
+            temp=im.getpixel((i,j))
+            a,b,c=temp[0],temp[1],temp[2]
+            s=s+str(a)+","+str(b)+","+str(c)+" "
+    s=s+"\n"
+    compress_any(s)
+def compress_any(contents):
     table= [chr(i) for i in range(256)]
+    table.append(chr(425))
+    table.append(chr(945))
     output,a="",contents[0]
     i=1
     while i<=(len(contents)-1):
-        print(i/len(contents),end="\r")
         b=contents[i]
         if a+b in table:
             a=a+b
@@ -17,9 +43,6 @@ def compress(txt):
             a=b
         i=i+1
     output=output+ str(table.index(a))+" "
-    new=open(os.path.splitext(txt)[0]+".lzw","w+")
+    new=open("compressed.txt","w+")
     new.write(output)
-    new.close()
-if __name__ == "__main__":
-    file=input()
-    compress(file)
+    
