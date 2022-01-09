@@ -102,7 +102,7 @@ f2=Frame(root,bg=color1)
 
 for frs in (f1,f2):
     frs.grid(row=0,column=0,sticky="nsew")
-root.title("COMPRESS ME")
+root.title("COMPRESSOR")
 
 l0=Label(f1,text="WELCOME",font= ("Lucida Bright",50),fg="purple",bg="pink")
 l0.place(relx=0.5,rely=0.3,anchor="center",relheight=0.11,relwidth=0.45)
