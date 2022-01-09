@@ -86,8 +86,11 @@ def comp(comp):
         y=decompress(filename,out_file)
         y=y.msg
     if y:
-        l2.configure(text=y)
-        l2.text=y
+        try:l2.destroy() 
+        except: pass
+        l2=scrolledtext.ScrolledText(f2,width=50,height=10,bg=color2)
+        l2.insert(END,y)
+        l2.place(relx=0.25, rely=0.25, relheight=0.5, relwidth=0.5)
 
 
 root=Tk()
