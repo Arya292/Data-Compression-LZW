@@ -78,11 +78,13 @@ def browse():
             print(e)
 
 def comp(comp):
-    global filename
+    global filename,out
+    if out.get():
+        out_file=out.get()
     if comp:
-        y=compress(filename)
+        y=compress(filename,out_file)
     else:
-        y=decompress(filename)
+        y=decompress(filename,out_file)
         y=y.msg
     if y:
         l2.configure(text=y)

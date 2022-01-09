@@ -1,9 +1,13 @@
 import os
 from PIL import Image 
 
-def compress(file):
-    global extension , name
+def compress(file,out):
+    global extension , name , out_file
     name,extension=os.path.splitext(file)
+    if out:
+        out_file = out
+    else:
+        out_file = name+".lzw"
     if extension==".txt":
         return text_compress(file)
     elif extension in ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif']:
@@ -29,6 +33,7 @@ def image_compress(image):
         s=s+"\n"
     return compress_any(s)
 def compress_any(contents):
+    global out_file
     table= [chr(i) for i in range(256)]
     output,a="",contents[0]
     i=1
@@ -42,7 +47,7 @@ def compress_any(contents):
             a=b
         i=i+1
     output=output+ str(table.index(a))+" "
-    new=open(name+".lzw","w+")
+    new=open(out_file,"w+")
     new.write(output)
     new.write(extension)
     return "File compressed successfully"
