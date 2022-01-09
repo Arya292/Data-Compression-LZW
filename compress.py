@@ -18,7 +18,7 @@ def compress(file,out=None):
 def text_compress(text):
     with open(text) as f:
         contents = f.read()
-    table=table= {chr(i):i for i in range(256)}
+    table= {chr(i):i for i in range(256)}
     return compress_any(contents,table)
     
 
@@ -31,9 +31,12 @@ def image_compress(image):
             print(i*j/x/y, end="\r")
             temp=im.getpixel((i,j))
             a,b,c=temp[0],temp[1],temp[2]
-            s=s+str(a)+","+str(b)+","+str(c)+" "
-        s=s+"\n"
-    table= {chr(i):str(i) for i in range(10)}
+            s+=chr(a)+chr(b)+chr(c)+chr(425)
+        s+=chr(925)
+    s=s[:-1]
+    table= {chr(i):i for i in range(256)}
+    table[chr(425)]=len(table)
+    table[chr(925)] = len(table)
     return compress_any(s,table)
 def compress_any(contents,table):
     global out_file
@@ -46,7 +49,7 @@ def compress_any(contents,table):
             a=a+b
         else:
             output=output+ str(table.get(a))+","
-            table[a+b]=len(table)+1
+            table[a+b]=len(table)
             a=b
         i=i+1
     output=output+ str(table.get(a))+" "

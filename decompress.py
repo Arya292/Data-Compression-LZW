@@ -4,6 +4,7 @@ from PIL import Image
 
 class decompress():
     def __init__(self,file,out=None):
+        self.dict = [chr(a) for a in range(256)]
         try : self.text=open(file,"r").read()
         except :
             self.msg="File is not decompressable"
@@ -12,12 +13,11 @@ class decompress():
         if not out:
             out = os.path.splitext(file)[0]+self.ext
         if self.ext in [".png", ".jpg", ".jpeg", ".tiff", ".bmp", ".gif"]:
-            self.dict=[str(i) for i in range(10)]+[" ",",","\n"]
+            self.dict+=[chr(425),chr(925)]
             self.text=self.text[:-len(self.ext)-1]
             self.text=self.decompress()
             self.msg=self.strtoimg(self.text,out)
         else:
-            self.dict = [chr(a) for a in range(256)]
             self.text = self.text[:-len(self.ext)-1]
             de=self.decompress()
             with open(out,"w") as f:
@@ -48,11 +48,11 @@ class decompress():
     
     def strtoimg(self,text,outfile):
         pix=[]
-        for line in text.split("\n"):
-            temp=line.split()
+        for line in text.split(chr(925)):
+            temp=line.split(chr(425))
             for i in range(0,len(temp)):
-                temp[i]=list(map(int,temp[i].split(",")))
-            pix.append(temp)
+                temp[i] = [ord(temp[i][j]) for j in range(0, len(temp[i]))]
+            pix.append(temp[:-1])
         x,y=len(pix),len(pix[0])
         new=Image.new("RGB",(x,y))
         for i in range(0,x):
