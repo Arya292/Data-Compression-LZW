@@ -33,10 +33,9 @@ def image_compress(image):
             a,b,c=temp[0],temp[1],temp[2]
             s=s+str(a)+","+str(b)+","+str(c)+" "
         s=s+"\n"
-    table= {chr(i):i for i in range(10)}
+    table= {chr(i):str(i) for i in range(10)}
     return compress_any(s,table)
 def compress_any(contents,table):
-    values=list(table.values())
     global out_file
     output,a="",contents[0]
     i=1
@@ -47,10 +46,7 @@ def compress_any(contents,table):
             a=a+b
         else:
             output=output+ str(table.get(a))+","
-            table.append(a+b)
-            new=len(values)+1
-            table[a+b]=new
-            values.append(new)
+            table[a+b]=len(table)+1
             a=b
         i=i+1
     output=output+ str(table.get(a))+" "
