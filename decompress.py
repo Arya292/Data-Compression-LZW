@@ -3,7 +3,10 @@ import sys
 
 class decompress():
     def __init__(self,file,out=None):
-        self.text=open(file,"r").read()
+        try : self.text=open(file,"r").read()
+        except :
+            self.msg="File is not decompressable"
+            return
         self.ext=self.text.split()[-1]
         if not out:
             out = os.path.splitext(file)[0]+self.ext

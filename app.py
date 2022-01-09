@@ -60,7 +60,6 @@ def browse():
         l2.place(relx=0.25, rely=0.25, relheight=0.5, relwidth=0.5)
         img = Image.open(filename)
         x, y = img.size
-        print(filename,x,y)
         preview = ImageTk.PhotoImage(img)
         l2.configure(image=preview,height=x,width=y,bg=color1)
         l2.image = preview
@@ -104,14 +103,6 @@ for frs in (f1,f2):
     frs.grid(row=0,column=0,sticky="nsew")
 root.title("COMPRESS ME")
 
-# in first frame 
-# img=Image.open("static/bg.png")
-# img=img.resize((800,450))
-# bg=ImageTk.PhotoImage(img)
-# canv=Canvas(f1)
-# canv.pack(fill="both",expand=True)
-# canv.create_image(0, 0, image=bg, anchor="nw")
-
 l0=Label(f1,text="WELCOME",font= ("Lucida Bright",50),fg="purple",bg="pink")
 l0.place(relx=0.5,rely=0.3,anchor="center",relheight=0.11,relwidth=0.45)
 
@@ -120,7 +111,22 @@ go.place(relx=0.5, rely=0.97, anchor="s")
 
 #in the second frame
 back = Button(f2, text="<--- back", font= ("Lucida Bright",13),command=lambda: show(f1),border=0, bg="pink", fg=color3,activebackground=color3,activeforeground=color2)
-back.place(relx=0.5, rely=0.99, anchor="s")
+back.place(relx=0.5, rely=0.97, anchor="s")
+
+out=Entry(f2,bg=color2,fg=color3,text="Output File Name :")
+out.place(relx=0, rely=0.16, height=29, relwidth=0.75)
+
+def disab():
+    global out,use
+    if use.get():
+        out.configure(state="disabled")
+    else:
+        out.configure(state="normal")
+
+use=IntVar()
+check=Checkbutton(f2,text="Use Default file name",bg=color2,fg=color3,variable=use,command=disab,onvalue=1,offvalue=0)
+check.place(relx=0.75, rely=0.16, height=29, relwidth=0.25)
+
 
 temp=Label(f2,text="File Compressor",font= ("Lucida Bright",15),fg="purple",bg=color1)
 temp.place(relx=0.5, rely=0.03, relheight=0.1, relwidth=0.5, anchor="n")
