@@ -46,14 +46,14 @@ def compress_any(contents,table):
         if a+b in table:
             a=a+b
         else:
-            output=output+ str(table.index(a))+","
+            output=output+ str(table.get(a))+","
             table.append(a+b)
             new=len(values)+1
             table[a+b]=new
             values.append(new)
             a=b
         i=i+1
-    output=output+ str(table.index(a))+" "
+    output=output+ str(table.get(a))+" "
     new=open(out_file,"w+")
     new.write(output)
     new.write(extension)
