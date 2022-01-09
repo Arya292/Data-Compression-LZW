@@ -79,8 +79,7 @@ def browse():
 
 def comp(comp):
     global filename,out
-    if out.get():
-        out_file=out.get()
+    out_file=out.get()
     if comp:
         y=compress(filename,out_file)
     else:

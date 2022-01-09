@@ -1,7 +1,7 @@
 import os
 from PIL import Image 
 
-def compress(file,out):
+def compress(file,out=None):
     global extension , name , out_file
     name,extension=os.path.splitext(file)
     if out:
@@ -18,7 +18,8 @@ def compress(file,out):
 def text_compress(text):
     with open(text) as f:
         contents = f.read()
-    return compress_any(contents)
+    table= [chr(i) for i in range(256)]
+    return compress_any(contents,table)
     
 
 def image_compress(image):
@@ -27,17 +28,19 @@ def image_compress(image):
     s=""
     for i in range(0,x):
         for j in range(0,y):
+            print(i*j/x/y, end="\r")
             temp=im.getpixel((i,j))
             a,b,c=temp[0],temp[1],temp[2]
             s=s+str(a)+","+str(b)+","+str(c)+" "
         s=s+"\n"
-    return compress_any(s)
-def compress_any(contents):
+    table = [str(i) for i in range(10)]+[" ",",","\n"]
+    return compress_any(s,table)
+def compress_any(contents,table):
     global out_file
-    table= [chr(i) for i in range(256)]
     output,a="",contents[0]
     i=1
     while i<=(len(contents)-1):
+        print(i/len(contents), end="\r")
         b=contents[i]
         if a+b in table:
             a=a+b

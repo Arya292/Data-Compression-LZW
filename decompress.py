@@ -1,5 +1,6 @@
 import os
 import sys
+from PIL import Image
 
 class decompress():
     def __init__(self,file,out=None):
@@ -14,7 +15,7 @@ class decompress():
             self.dict=[str(i) for i in range(10)]+[" ",",","\n"]
             self.text=self.text[:-len(self.ext)-1]
             self.text=self.decompress()
-            slef.msg=self.strtoimg(self.text,out)
+            self.msg=self.strtoimg(self.text,out)
         else:
             self.dict = [chr(a) for a in range(256)]
             self.text = self.text[:-len(self.ext)-1]
@@ -45,7 +46,7 @@ class decompress():
             i += 1
         return out
     
-    def strtoimg(text,outfile):
+    def strtoimg(self,text,outfile):
         pix=[]
         for line in text.split("\n"):
             temp=line.split()
@@ -55,9 +56,8 @@ class decompress():
         x,y=len(pix),len(pix[0])
         new=Image.new("RGB",(x,y))
         for i in range(0,x):
-            for j in range(0,y):
-                new.putpixel((i,j),(pix[i][j][0],pix[i][j][1],pix[i][j][2]))
-        return new
+            for j in range(0,len(pix[i])):
+                new.putpixel((i,j),tuple(pix[i][j]))
         new.save(outfile)
         return "File decompressed successfully"
         
