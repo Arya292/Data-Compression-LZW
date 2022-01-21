@@ -32,8 +32,8 @@ def image_compress(image):
             temp=im.getpixel((i,j))
             a,b,c=temp[0]+1,temp[1]+1,temp[2]+1
             s1+=chr(a)
-            s2=+chr(b)
-            s3=+chr(c) 
+            s2+=chr(b)
+            s3+=chr(c) 
     s=s1+chr(425)+s2+chr(425)+s3        
     table= {chr(i):i for i in range(1,257)}
     table[chr(425)]=len(table)
