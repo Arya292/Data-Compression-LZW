@@ -25,19 +25,20 @@ def text_compress(text):
 def image_compress(image):
     im=Image.open(image)
     x,y=im.size[0],im.size[1]
-    s=""
+    s1,s2,s3="","",""
     for i in range(0,x):
         for j in range(0,y):
             print(i*j/x/y, end="\r")
             temp=im.getpixel((i,j))
-            a,b,c=temp[0],temp[1],temp[2]
-            s+=chr(a)+chr(b)+chr(c)+chr(425)
-        s+=chr(925)
-    s=s[:-1]
-    table= {chr(i):i for i in range(256)}
+            a,b,c=temp[0]+1,temp[1]+1,temp[2]+1
+            s1+=chr(a)
+            s2=+chr(b)
+            s3=+chr(c) 
+    s=s1+chr(425)+s2+chr(425)+s3        
+    table= {chr(i):i for i in range(1,257)}
     table[chr(425)]=len(table)
-    table[chr(925)] = len(table)
     return compress_any(s,table)
+
 def compress_any(contents,table):
     global out_file
     output,a="",contents[0]
