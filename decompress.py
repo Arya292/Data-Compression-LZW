@@ -1,5 +1,6 @@
 import os
 import sys
+import numpy as np
 from PIL import Image
 
 class decompress():
@@ -12,8 +13,10 @@ class decompress():
         self.ext=self.text.split()[-1]
         if not out:
             out = os.path.splitext(file)[0]+self.ext
-        if self.ext in [".png", ".jpg", ".jpeg", ".tiff", ".bmp", ".gif"]:
-            self.dict+=[chr(425),chr(925)]
+        else:
+            out=os.path.dirname(file)+"/"+out
+        if self.ext in [".png", ".jpg", ".jpeg", ".tif", ".bmp", ".gif",".tiff"]:
+            self.dict+=[chr(256),chr(425)]
             self.text=self.text[:-len(self.ext)-1]
             self.text=self.decompress()
             self.msg=self.strtoimg(self.text,out)
@@ -22,6 +25,7 @@ class decompress():
             de=self.decompress()
             with open(out,"w") as f:
                 f.write(de)
+            print("File saved to "+out)
             self.msg= "File decompressed successfully"
 
 
@@ -48,17 +52,19 @@ class decompress():
     
     def strtoimg(self,text,outfile):
         pix=[]
-        for line in text.split(chr(925)):
-            temp=line.split(chr(425))
-            for i in range(0,len(temp)):
-                temp[i] = [ord(temp[i][j]) for j in range(0, len(temp[i]))]
-            pix.append(temp[:-1])
-        x,y=len(pix),len(pix[0])
+        pix=text.split(chr(425))
+        r,g,b=list(map(list,np.array_split(pix,3)))
+        for i in range(len(r)):
+            r[i]=[ord(j)-1 for j in r[i]]
+            g[i]=[ord(j)-1 for j in g[i]]
+            b[i]=[ord(j)-1 for j in b[i]]
+        x,y=len(r),len(r[0])
         new=Image.new("RGB",(x,y))
         for i in range(0,x):
-            for j in range(0,len(pix[i])):
-                new.putpixel((i,j),tuple(pix[i][j]))
+            for j in range(0,y):
+                new.putpixel((i,j),(r[i][j],g[i][j],b[i][j]))
         new.save(outfile)
+        print("Image Saved to "+outfile)
         return "File decompressed successfully"
         
 
