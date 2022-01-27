@@ -26,3 +26,5 @@ check("data/file3.txt","data/file3.lzw")
 
 check("data/check.tif","data/check.lzw")
 check("data/cup.tif","data/cup.lzw")
+check("data/index.tif","data/index.lzw")
+check("data/lena.tif","data/lena.lzw")

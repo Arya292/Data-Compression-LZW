@@ -8,7 +8,7 @@ def compress(file,out=None):
         out_file = out
     else:
         out_file = name+".lzw"
-    if extension in ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif']:
+    if extension in ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif',".tif"]:
         return image_compress(file)
     else:
         try:
