@@ -9,7 +9,7 @@ def check(inf,outf):
     comp_time = (time.time()-t)
     size1,size2=os.path.getsize(inf),os.path.getsize(outf)
     t=time.time()
-    decompress(outf, "_d".join(os.path.splitext(inf)))
+    decompress(outf, "_d".join(os.path.splitext(inf))[5:])
     decomp_time = (time.time()-t)
     size3=os.path.getsize("_d".join(os.path.splitext(inf)))
     print("Size before compression:", size1/1024, "KB")
