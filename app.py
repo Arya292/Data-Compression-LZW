@@ -35,7 +35,7 @@ color1, color2, color3 = ["#f9b8b1", "#f84791", "#25388e"]
 
 def isimg(filename):
     name,ext=os.path.splitext(filename)
-    if ext in ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif']:
+    if ext in ['.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif',".tif"]:
         return True
     return False
 
