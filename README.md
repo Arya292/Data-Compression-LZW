@@ -53,12 +53,3 @@ python3 app.py
 You will get a graphical interface where you can select files and compress or decompress them
 
 
-## References
-
-- [C0322226.pdf (ajer.org)](https://ajer.org/papers/v3(2)/C0322226.pdf)
-- [13_Implementation of LZW Algorithm for Binary Lossless Data Compression.pdf](https://www.niet.co.in/nietpfd/13_Implementation%20of%20LZW%20Algorithm%20for%20Binary%20Lossless%20Data%20Compression.pdf)
-- [https://courses.cs.washington.edu/courses/cse326/05au/lectures/lecture19.pdf](https://courses.cs.washington.edu/courses/cse326/05au/lectures/lecture19.pdf)
-- [https://commandlinefanatic.com/cgi-bin/showarticle.cgi?article=art010](https://commandlinefanatic.com/cgi-bin/showarticle.cgi?article=art010)
-- [https://www2.cs.duke.edu/csed/curious/compression/lzw.html](https://www2.cs.duke.edu/csed/curious/compression/lzw.html)
-
-
