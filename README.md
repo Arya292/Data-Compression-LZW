@@ -28,7 +28,6 @@ The Idea relies on recurring patterns to save data space. Reading a sequence of 
  <img alt="openingtext" src="screenshots/opening_text.png" width=20%>
  <img alt="openingimg" src="screenshots/opening_img.png" width=20%>
  <img alt="aftercompression" src="screenshots/after_compression.png" width=25%>
- <img alt="comparison" src="screenshots/compare.png" width=40%>
 </p>
 
 ## Installation
