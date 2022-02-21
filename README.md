@@ -1,4 +1,3 @@
-# Data Compression LZW
 
 
 ## Data Compression
@@ -23,11 +22,11 @@ The Idea relies on recurring patterns to save data space. Reading a sequence of 
 
 ## Screenshots
 <p>
- <img alt="welcomescreen" src="screenshots/welcome_screen.png" width=20%>
- <img alt="mainscreen" src="screenshots/main_screen.png" width=20%>
- <img alt="openingtext" src="screenshots/opening_text.png" width=20%>
- <img alt="openingimg" src="screenshots/opening_img.png" width=20%>
- <img alt="aftercompression" src="screenshots/after_compression.png" width=25%>
+ <img alt="welcomescreen" src="screenshots/welcome_screen.png" width=30%>
+ <img alt="mainscreen" src="screenshots/main_screen.png" width=30%>
+ <img alt="openingtext" src="screenshots/opening_text.png" width=30%>
+ <img alt="openingimg" src="screenshots/opening_img.png" width=30%>
+ <img alt="aftercompression" src="screenshots/after_compression.png" width=30%>
 </p>
 
 ## Installation
