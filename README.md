@@ -2,10 +2,12 @@
 
 ## Data Compression
 
-Data compression technique helps in saving storage space by reducing the volume of data, without affecting its quality. Compression methods are of two types - lossy and lossless. In lossless compression, no data is lost. Lossy compression, on the other hand, reduces bits by deleting unneeded or less relevant data. Here we have implemented a graphical interface where you can select files and compress or decompress them lossless compression technique using LZW algorithm 
+Data compression technique helps in saving storage space by reducing the volume of data, without affecting its quality. Compression methods are of two types - lossy and lossless. In lossless compression, no data is lost. Lossy compression, on the other hand, reduces bits by deleting unneeded or less relevant data. 
+
+Here we have implemented a small desktop application using LZW (lossless compression algorithm), where you can select files and compress or decompress them.
 
 ## LZW
-The Idea relies on recurring patterns to save data space. Reading a sequence of symbols, arranging the symbols into strings, and translating the strings into codes is how LZW compression works. We achieve compression because the codes take up less space than the strings they replace.This algorithm has several advantages. It requires no prior information about the input data stream. It can compress the input stream in one single pass. One of the main advantages is its simplicity which allows fast execution 
+The Idea relies on recurring patterns to save data space. Reading a sequence of symbols, arranging the symbols into strings, and translating the strings into codes is how LZW compression works. We achieve compression because the codes take up less space than the strings they replace.This algorithm requires no prior information about the input data stream. It can compress the input stream in one single pass. 
 
 
 ## Performance
