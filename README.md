@@ -1,4 +1,5 @@
 
+## Data Compression
 Data compression helps in saving storage space by reducing the volume of data, without affecting its quality. Compression methods are of two types - lossy and lossless. In lossless compression, no data is lost. Lossy compression, on the other hand, reduces bits by deleting unneeded or less relevant data. 
 
 Here we have implemented a small desktop application using LZW (lossless compression algorithm), which could compress text and image files.The app allows you to select files and compress or decompress them.
